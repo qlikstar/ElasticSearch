@@ -68,9 +68,7 @@ public class ElasticSearchApplication implements CommandLineRunner{
 
 					System.out.println(planName + "=>" + sponsorName + "=>" + sponsorState);
 
-//					ProcessParams processParams = new ProcessParams("WEST ESSEX GRAPHICS, INC. 401(K) PLAN",
-//							"WEST ESSEX GRAPHICS, INC." ,
-//							"NJ");
+					//ProcessParams processParams = new ProcessParams("WEST ESSEX GRAPHICS, INC. 401(K) PLAN","WEST ESSEX GRAPHICS, INC." ,"NJ");
 					ProcessParams processParams = new ProcessParams(planName, sponsorName, sponsorState);
 					restService.searchByCriteria(processParams.getDataString());
 
@@ -83,7 +81,7 @@ public class ElasticSearchApplication implements CommandLineRunner{
 					System.out.println("Please try again ! \n\n ");
 
 			}
-			System.out.println("Please select any of the options :");
+			System.out.println("\n\n Please select any of the options :");
 			System.out.println("1. Please enter File Download URL ");
 			System.out.println("2. Fetch data with parameters");
 			System.out.println("3. Exit");

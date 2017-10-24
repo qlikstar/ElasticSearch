@@ -1,5 +1,7 @@
 package com.decipherx.fintech.ElasticSearch.service;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -47,7 +49,18 @@ public class RestService implements Runnable{
         HttpEntity<String> entity = new HttpEntity<>(data,headers);
         ResponseEntity<String> response = restTemplate.exchange(elasticSearchURL + DOL_ENDPOINT + "_search", HttpMethod.POST, entity, String.class);
 
-        System.out.println(response.getBody());
+        JSONObject jsonObj = new JSONObject(response.getBody());
+        JSONObject jsonHits = (JSONObject) jsonObj.get("hits");
+        JSONArray jsonArrayHits = (JSONArray) jsonHits.get("hits");
+
+        jsonArrayHits.forEach(item -> {
+            JSONObject obj = (JSONObject) item;
+            System.out.println(obj.get("_source"));
+        });
+
+
+
+        //System.out.println(response.getBody());
     }
 
     /**
